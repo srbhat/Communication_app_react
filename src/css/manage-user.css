@@ -1,0 +1,25 @@
+tr:nth-child(even) {
+    background-color: #F0F0F0;
+}
+
+a {
+    text-align: center;
+    display: block;
+}
+
+thead {
+    background-color: #CCCCCC;
+}
+
+table {
+    width: 100%;
+    border: 2px solid;
+}
+
+tr {
+    height: 40px;
+}
+
+td {
+    width: 33%;
+}

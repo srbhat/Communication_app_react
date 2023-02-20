@@ -1,5 +1,77 @@
-function Login() {
-    return <div>This is Group Chat Functional Component</div>
-}
+import React from 'react';
 
-export default Login;
+export default class Login extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            errors: {
+                email: "",
+                password: ""
+            }
+        }
+    }
+
+    submitHandler = event => {
+        event.preventDefault(); // do not refresh page
+    }
+
+    changeHandler = event => {
+        let errors = this.state.errors;
+        let name = event.target.name;
+        let value = event.target.value;
+
+        switch (name) {
+            case "email":
+                errors.email = value.length < 5 ? "Email must be 5 characters length" : ""
+                let apos = value.indexOf("@"); // from beginning first item
+                let dotpos = value.lastIndexOf("."); // from beginning last item
+                if (apos < 1 || (dotpos - apos) < 2) {
+                    errors.email = "Please enter valid email Id";
+                }
+                break;
+            case "password":
+                errors.password = value.length < 8 ? "Password must be 5 characters length" : ""
+                break;
+            default:
+                break;
+        }
+        this.setState({ errors, [name]: value });
+    }
+
+    render() {
+        const { errors } = this.state; // added in ES6
+        return (
+            <div>
+                <h1 class="align_centre">Login</h1>
+                <div class="center">
+                    <form action="./login-success.html" onsubmit={this.submitHandler}>
+                        <table>
+                            <tr>
+                                <td class="table_align">
+                                    <h3>Email</h3>
+                                </td>
+                                <td><input class="input_box" type="email" name="email" placeholder="anne.hunter@mail.com" onChange={this.changeHandler}></input></td>
+                                <p className="error">{errors.email}</p>
+                            </tr>
+                            <tr>
+                                <td class="table_align">
+                                    <h3>Password</h3>
+                                </td>
+                                <td><input class="input_box input" type="password" name="password" placeholder="*****" onChange={this.changeHandler}></input>
+                                </td>
+                                <p className="error">{errors.password}</p>
+                            </tr>
+                            <tr>
+                                <td class="button_align" colspan="2">
+                                    <button type="Submit" class="submit_box">Login</button>
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+            </div >
+        )
+    }
+
+}
