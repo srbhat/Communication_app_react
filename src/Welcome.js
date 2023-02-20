@@ -8,7 +8,7 @@ function Welcome() {
             </div>
             <h3 className="align_centre">New Users</h3>
             <div className="container">
-                <a className="link_box" href="register">Register</a>
+                <a className="link_box my_link" href="register">Register</a>
             </div>
         </body>
     </div >)
