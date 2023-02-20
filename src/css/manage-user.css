@@ -1,4 +1,4 @@
-tr:nth-child(even) {
+.usertr:nth-child(even) {
     background-color: #F0F0F0;
 }
 
@@ -7,19 +7,15 @@ a {
     display: block;
 }
 
-thead {
+.userthead {
     background-color: #CCCCCC;
 }
 
-table {
+.usertable {
     width: 100%;
     border: 2px solid;
 }
 
-tr {
+.usertr {
     height: 40px;
-}
-
-td {
-    width: 33%;
 }

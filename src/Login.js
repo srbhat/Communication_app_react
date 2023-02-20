@@ -44,7 +44,7 @@ export default class Login extends React.Component {
             <div>
                 <h1 className="align_centre">Login</h1>
                 <div className="center">
-                    <form action="./login-success.html" onsubmit={this.submitHandler}>
+                    <form action="loginsuccess" onsubmit={this.submitHandler}>
                         <table>
                             <tr>
                                 <td className="table_align">

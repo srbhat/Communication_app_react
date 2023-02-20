@@ -8,25 +8,44 @@ import GroupChat from './GroupChat';
 import ManageUsers from './ManageUsers';
 // import EditUsers from './EditUsers';
 import ManageDocument from './ManageDocument';
-import Nav from './Nav';
+// import Nav from './Nav';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 export default class Main extends React.Component { // export class 
+
+
+    constructor(props) {
+        super(props);
+        this.state = { // object
+            users: getDataFromLocalStorage()
+        }
+    }
+
+    userRegister = () => { // new product
+        this.setState({ // whenever state update, component rerender
+            users: getDataFromLocalStorage()
+        })
+    }
+
+
     render() { // render lifecycle method
         return (<BrowserRouter>
             <Routes>
-                <Route path="/" element={<Nav />}>
-                    <Route index element={<Welcome />} />
-                    <Route path="login" element={<Login />} />
-                    <Route path="register" element={<Register />} />
-                    <Route path="loginsuccess" element={<LoginSuccessfull />} />
-                    <Route path="registersuccess" element={<RegisterSuccessful />} />
-                    <Route path="groupchat" element={<GroupChat />} />
-                    <Route path="manageusers" element={<ManageUsers />} />
-                    <Route path="managedocuments" element={<ManageDocument />} />
-                </Route>
+                <Route path="/" element={<Welcome />} />
+                <Route path="login" element={<Login />} />
+                <Route path="register" element={<Register onRegUsers={() => this.userRegister()} />} />
+                <Route path="loginsuccess" element={<LoginSuccessfull />} />
+                <Route path="registersuccess" element={<RegisterSuccessful />} />
+                <Route path="groupchat" element={<GroupChat />} />
+                <Route path="manageusers" element={<ManageUsers users={this.state.users} />} />
+                <Route path="managedocuments" element={<ManageDocument />} />
             </Routes>
         </BrowserRouter>
         )
     }
+}
+
+function getDataFromLocalStorage() {
+    let users = localStorage.getItem("users") ? JSON.parse(localStorage.getItem("users")) : []; // ternary operator
+    return users;
 }
