@@ -1,5 +1,4 @@
 import React from 'react';
-
 export default class Login extends React.Component {
 
     constructor(props) {
@@ -43,28 +42,28 @@ export default class Login extends React.Component {
         const { errors } = this.state; // added in ES6
         return (
             <div>
-                <h1 class="align_centre">Login</h1>
-                <div class="center">
+                <h1 className="align_centre">Login</h1>
+                <div className="center">
                     <form action="./login-success.html" onsubmit={this.submitHandler}>
                         <table>
                             <tr>
-                                <td class="table_align">
+                                <td className="table_align">
                                     <h3>Email</h3>
                                 </td>
-                                <td><input class="input_box" type="email" name="email" placeholder="anne.hunter@mail.com" onChange={this.changeHandler}></input></td>
+                                <td><input className="input_box" type="email" name="email" placeholder="anne.hunter@mail.com" onChange={this.changeHandler}></input></td>
                                 <p className="error">{errors.email}</p>
                             </tr>
                             <tr>
-                                <td class="table_align">
+                                <td className="table_align">
                                     <h3>Password</h3>
                                 </td>
-                                <td><input class="input_box input" type="password" name="password" placeholder="*****" onChange={this.changeHandler}></input>
+                                <td><input className="input_box input" type="password" name="password" placeholder="*****" onChange={this.changeHandler}></input>
                                 </td>
                                 <p className="error">{errors.password}</p>
                             </tr>
                             <tr>
-                                <td class="button_align" colspan="2">
-                                    <button type="Submit" class="submit_box">Login</button>
+                                <td className="button_align" colspan="2">
+                                    <button type="Submit" className="submit_box">Login</button>
                                 </td>
                             </tr>
                         </table>
