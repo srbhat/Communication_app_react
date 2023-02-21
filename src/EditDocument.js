@@ -1,4 +1,11 @@
+import { useNavigate } from "react-router-dom";
 function EditDocuments() {
+
+    const navigate = useNavigate();
+    const editredirect = () => {
+        navigate("/managedocuments");
+    }
+
     return (
         <div>
             <span className="tab"><a className="tool_box" href="groupchat">Group Chat</a></span>
@@ -13,8 +20,8 @@ function EditDocuments() {
                     <p class="align_centre"><b>Edit</b></p>
                 </div>
                 <input name="fileLabel" className="file_text_box" type="text" placeholder="Sample File" />
-                <button onclick="hideEdit()" class="save">Save</button>
-                <button onclick="hideEdit()" class="cancel">Cancel</button>
+                <button onClick={editredirect} class="save">Save</button>
+                <button onClick={editredirect} class="cancel">Cancel</button>
             </div>
         </div>
     )

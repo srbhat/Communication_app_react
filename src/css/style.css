@@ -227,7 +227,7 @@ a {
 }
 
 .ok {
-    width: 20%;
+    width: 30%;
     padding: 8px 15px 8px 15px;
     background-color: #CCCCCC;
     display: inline-block;
@@ -239,7 +239,7 @@ a {
 }
 
 .d_cancel {
-    width: 20%;
+    width: 30%;
     padding: 8px 15px 8px 15px;
     background-color: #CCCCCC;
     display: inline-block;

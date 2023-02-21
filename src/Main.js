@@ -12,6 +12,7 @@ import Logout from './Logout';
 import UploadDocument from './UploadDocument';
 import EditDocuments from './EditDocument';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import DeleteComponent from './DeleteComponent';
 
 
 export default class Main extends React.Component { // export class 
@@ -58,8 +59,9 @@ export default class Main extends React.Component { // export class
                 <Route path="managedocuments" element={<ManageDocument docs={this.state.docs}/>} />
                 <Route path="edituser" element={<EditUsers />} />
                 <Route path="logout" element={<Logout />} />
-                <Route path="uploaddoc" element={<UploadDocument onUpload={() => this.userUploads()}/>} />
+                <Route path="uploaddoc" element={<UploadDocument onUpload={() => this.userUploads()} logged_in_users={this.state.loggedin}/>} />
                 <Route path="editdoc" element={<EditDocuments />} />
+                <Route path="delete" element={<DeleteComponent />} />
             </Routes>
         </BrowserRouter>
         )

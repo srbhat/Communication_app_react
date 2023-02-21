@@ -12,7 +12,7 @@ function ManageDocument(props) {
     }
 
     const deleteredirect = () => {
-        navigate("/deletedoc");
+        navigate("/delete");
     }
     return (
         <div>
@@ -67,6 +67,17 @@ function ManageDocument(props) {
                         </td>
                     </tr>
                 </thead>
+                <tbody>
+                    {
+                        props.docs.map((doc, index) => (
+                            <tr className="usertr" key={index}>
+                                <td>{doc.fileLabel}</td>
+                                <td className="align_centre">{doc.myFile}</td>
+                                <td className="align_centre">{doc.email}</td>
+                            </tr>
+                        ))
+                    }
+                </tbody>
 
                 <tr>
                     <td>

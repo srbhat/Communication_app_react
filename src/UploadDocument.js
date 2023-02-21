@@ -13,10 +13,13 @@ class UploadDocument extends React.Component {
         event.preventDefault(); // do not refresh page
         const fileLabel = event.target.elements.fileLabel.value;
         const myFile = event.target.elements.myFile.value;
+        const email = this.props.logged_in_users[0].email;
+        console.log(email);
         const docData = {
             fileId: Number(new Date()),
             fileLabel: fileLabel,
-            myFile: myFile
+            myFile: myFile,
+            email: email
         }
         let docs = localStorage.getItem("uploads") ? JSON.parse(localStorage.getItem("uploads")) : []; // ternary operator
         //Check for existing user 
