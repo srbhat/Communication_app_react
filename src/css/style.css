@@ -53,7 +53,6 @@ a {
 
 .link_box {
     display: inline-block;
-    width: 70px;
     padding: 10px 50px;
     color: black;
     text-decoration: none;
@@ -78,6 +77,7 @@ a {
     color: black;
     text-decoration: none;
     border: 2px solid black;
+    display: inline-block;
 
 }
 

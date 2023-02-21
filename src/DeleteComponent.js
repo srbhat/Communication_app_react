@@ -4,7 +4,7 @@ function DeleteComponent() {
 
     const navigate = useNavigate();
     const deleteredirect = () => {
-        navigate("/manageusers");
+        navigate("/managedocuments");
     }
 
     return (

@@ -1,6 +1,6 @@
 import React from 'react'; // core module
-// import Modal from 'react-bootstrap/Modal';
-// import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+import Button from 'react-bootstrap/Button';
 import { Navigate } from "react-router-dom";
 
 
@@ -9,8 +9,7 @@ class ManageUsers extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            edit: false,
-            delete: false,
+            redirect: false,
             show: false
         }
     }
@@ -23,29 +22,17 @@ class ManageUsers extends React.Component {
     }
 
     editredirect = () => {
-        this.edredirect();
+        this.redirect();
     }
 
-    deleteredirect = () => {
-        this.delredirect();
-    }
-
-    edredirect = () => {
-        this.setState({ edit: true , delete : false}) // whenever state updates, component rerender
-    }
-
-    delredirect = () => {
-        this.setState({ edit: false , delete : true}) // whenever state updates, component rerender
+    redirect = () => {
+        this.setState({ redirect: true}) // whenever state updates, component rerender
     }
 
     render() {
-        const edit  = this.state.edit;
-        const deleteq = this.state.delete;
-        if (edit) {
+        const { redirect } = this.state;
+        if (redirect) {
             return <Navigate to="/edituser" />;
-        }
-        if (deleteq) {
-            return <Navigate to="/delete" />;
         }
         return (
             <div>
@@ -76,14 +63,14 @@ class ManageUsers extends React.Component {
                                     <td className="align_centre">{user.email}</td>
                                     <td className="align_centre">
                                         <button className="ed_buttons" onClick={this.editredirect}> Edit </button> | <button
-                                            className="ed_buttons" onClick={this.deleteredirect}> Delete </button>
+                                            className="ed_buttons" onClick={this.handleShow}> Delete </button>
                                     </td>
                                 </tr>
                             ))
                         }
                     </tbody>
                 </table>
-                {/* <div>
+                <div>
                     <Modal show={this.state.show} onHide={this.handleClose}>
                         <Modal.Header closeButton>
                             <Modal.Title>Confirm User Deletion</Modal.Title>
@@ -98,7 +85,7 @@ class ManageUsers extends React.Component {
                             </Button>
                         </Modal.Footer>
                     </Modal>
-                </div> */}
+                </div>
             </div >
         )
     }
