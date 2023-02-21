@@ -9,6 +9,8 @@ import ManageUsers from './ManageUsers';
 import EditUsers from './EditUsers';
 import ManageDocument from './ManageDocument';
 import Logout from './Logout';
+import UploadDocument from './UploadDocument';
+import EditDocuments from './EditDocument';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 
@@ -19,7 +21,8 @@ export default class Main extends React.Component { // export class
         super(props);
         this.state = { // object
             users: getDataFromLocalStorage(),
-            loggedin: getDataFromLocalStorageLogin()
+            loggedin: getDataFromLocalStorageLogin(),
+            docs: getDataFromLocalStorageUploads()
         }
     }
 
@@ -35,6 +38,12 @@ export default class Main extends React.Component { // export class
         })
     }
 
+    userUploads = () => { // new product
+        this.setState({ // whenever state update, component rerender
+            docs: getDataFromLocalStorageUploads()
+        })
+    }
+
 
     render() { // render lifecycle method
         return (<BrowserRouter>
@@ -46,9 +55,11 @@ export default class Main extends React.Component { // export class
                 <Route path="registersuccess" element={<RegisterSuccessful />} />
                 <Route path="groupchat" element={<GroupChat />} />
                 <Route path="manageusers" element={<ManageUsers users={this.state.users} />} />
-                <Route path="managedocuments" element={<ManageDocument />} />
+                <Route path="managedocuments" element={<ManageDocument docs={this.state.docs}/>} />
                 <Route path="edituser" element={<EditUsers />} />
                 <Route path="logout" element={<Logout />} />
+                <Route path="uploaddoc" element={<UploadDocument onUpload={() => this.userUploads()}/>} />
+                <Route path="editdoc" element={<EditDocuments />} />
             </Routes>
         </BrowserRouter>
         )
@@ -63,4 +74,9 @@ function getDataFromLocalStorage() {
 function getDataFromLocalStorageLogin() {
     let logged_user = localStorage.getItem("loggedin") ? JSON.parse(localStorage.getItem("loggedin")) : []; // ternary operator
     return logged_user;
+}
+
+function getDataFromLocalStorageUploads() {
+    let docs = localStorage.getItem("uploads") ? JSON.parse(localStorage.getItem("uploads")) : []; // ternary operator
+    return docs;
 }
