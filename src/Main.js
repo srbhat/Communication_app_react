@@ -18,7 +18,8 @@ export default class Main extends React.Component { // export class
     constructor(props) {
         super(props);
         this.state = { // object
-            users: getDataFromLocalStorage()
+            users: getDataFromLocalStorage(),
+            loggedin: getDataFromLocalStorageLogin()
         }
     }
 
@@ -28,14 +29,20 @@ export default class Main extends React.Component { // export class
         })
     }
 
+    userLogin = () => { // new product
+        this.setState({ // whenever state update, component rerender
+            loggedin: getDataFromLocalStorageLogin()
+        })
+    }
+
 
     render() { // render lifecycle method
         return (<BrowserRouter>
             <Routes>
                 <Route path="/" element={<Welcome />} />
-                <Route path="login" element={<Login />} />
+                <Route path="login" element={<Login onLogin={() => this.userLogin()}/>} />
                 <Route path="register" element={<Register onRegUsers={() => this.userRegister()} />} />
-                <Route path="loginsuccess" element={<LoginSuccessfull />} />
+                <Route path="loginsuccess" element={<LoginSuccessfull logged_in_users={this.state.loggedin}/>} />
                 <Route path="registersuccess" element={<RegisterSuccessful />} />
                 <Route path="groupchat" element={<GroupChat />} />
                 <Route path="manageusers" element={<ManageUsers users={this.state.users} />} />
@@ -51,4 +58,9 @@ export default class Main extends React.Component { // export class
 function getDataFromLocalStorage() {
     let users = localStorage.getItem("users") ? JSON.parse(localStorage.getItem("users")) : []; // ternary operator
     return users;
+}
+
+function getDataFromLocalStorageLogin() {
+    let logged_user = localStorage.getItem("loggedin") ? JSON.parse(localStorage.getItem("loggedin")) : []; // ternary operator
+    return logged_user;
 }

@@ -1,4 +1,4 @@
-function LoginSuccessfull() {
+function LoginSuccessfull(props) {
     return (
         <div>
 
@@ -8,7 +8,7 @@ function LoginSuccessfull() {
             <span className="tab"><a className="tool_box" href="logout">Logout</a></span>
 
             <h1 className="align_centre">Login Successful</h1>
-            <p className="align_centre"><b>Welcome!</b> <span id="welcome"></span> </p>
+            <p className="align_centre"><b>Welcome! {props.logged_in_users[0].email}</b> <span id="welcome"></span> </p>
         
         </div>
     )
